@@ -18,6 +18,7 @@ pip install imutils
 pip install opencv-python
 pip install pyautogui
 pip install dlib
+pip install pyaudio
 
 python -m pip install --upgrade pip
 21.0.1
