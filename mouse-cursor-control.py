@@ -50,7 +50,7 @@ def direction(nose_point, anchor_point, w, h, multiple=1):
     nx, ny = nose_point
     x, y = anchor_point
 
-    if nx > x + multiple * w:
+    if nx > x + multiple *   w:
         return 'right'
     elif nx < x - multiple * w:
         return 'left'
@@ -67,10 +67,18 @@ MOUTH_AR_THRESH = 0.4
 MOUTH_AR_CONSECUTIVE_FRAMES = 8
 EYE_AR_THRESH = 0.24
 EYE_AR_CONSECUTIVE_FRAMES = 5
-WINK_AR_DIFF_THRESH = 0.04
+WINK_AR_DIFF_THRESH = 0.03
 WINK_AR_CLOSE_THRESH = 0.19
 WINK_CONSECUTIVE_FRAMES = 8
 r = sr.Recognizer()
+
+def empty():
+    pass
+cv2.namedWindow("UCP")
+cv2.resizeWindow("UCP",640,240)
+cv2.createTrackbar("MOUTH_AR_THRESH","UCP",40,60,empty)
+cv2.createTrackbar("EYE_AR_THRESH","UCP",24,60,empty)
+#cv2.createTrackbar("MOUTH_AR_THRESH","UCP",0.4,0.6,empty)
 # Initialize the frame counters for each action as well as 
 # booleans used to indicate if action is performed or not
 MOUTH_COUNTER = 0
@@ -127,9 +135,11 @@ while True:
     if len(rects) > 0:
         rect = rects[0]
     else:
-        cv2.imshow("Frame", frame)
+        cv2.imshow("UCP", frame)
         key = cv2.waitKey(1) & 0xFF
         continue
+    MOUTH_AR_THRESH=cv2.getTrackbarPos("MOUTH_AR_THRESH","UCP")/100
+    EYE_AR_THRESH=cv2.getTrackbarPos("EYE_AR_THRESH","UCP")/100
 
     # Determine the facial landmarks for the face region, then
     # convert the facial landmark (x, y)-coordinates to a NumPy
@@ -261,7 +271,7 @@ while True:
     #             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
     # Show the frame
-    cv2.imshow("Frame", frame)
+    cv2.imshow("UCP", frame)
     key = cv2.waitKey(1) & 0xFF
 
     # If the `Esc` key was pressed, break from the loop

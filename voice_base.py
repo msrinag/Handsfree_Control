@@ -38,6 +38,10 @@ while 1:
 
             elif (MyText.find('type')!= -1):
                 p.write(MyText[MyText.find('type')+5:])
+            elif (MyText.find('right click')):
+                p.click(button='left')
+            elif (MyText.find('left click')):
+                p.click(button='right')
 
     except sr.RequestError as e:
         print("not a command")
