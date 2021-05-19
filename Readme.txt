@@ -1,5 +1,6 @@
 clone this repo in your system 
 for os other than windows make sure u dowload python3.6 
+place the folder in your desktop rename the folder to project
 
 run this after installing python 3.6
 restart the system after installation 
@@ -27,7 +28,7 @@ python 3.6.0
 after installing run .py files
 please note you have to run both the files 
 
-python mouse-cursor-control.py & voice_base.py
+python main.py
 
 
 if your camera has privacy setting make sure to disable
